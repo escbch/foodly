@@ -27,12 +27,18 @@
     </v-app-bar>
 
     <v-content>
-      <AddProduct @DataAdd="AddData"/>
-    </v-content>
+    <AddProduct @DataAdd="AddData"/>
+    <ProductEntry id="entry"
+      v-for="(entry, index) in products"
+      :key="index"
+      :product="entry"
+      :index="index"/>
+      </v-content>
   </v-app>
 </template>
 
 <script>
+import ProductEntry from './components/ProductEntry'
 import AddProduct from './components/AddProduct'
 import axios from 'axios'
 
@@ -40,18 +46,29 @@ export default {
   name: 'App',
 
   components: {
+    ProductEntry,
     AddProduct
   },
 
-  data: () => ({
-    //
-  }),
+  data: function () {
+    return {
+      products: []
+    }
+  },
+
   methods: {
     AddData: function (e) {
-      axios.post('http://localhost:8080/data', { name: e.name, amount: e.amount }).then(response => {
-        this.list = response.data
+      axios.post('http://localhost:8080/products', { name: e.name, amount: e.amount }).then(response => {
+        this.products = response.data
       })
     }
   }
 }
 </script>
+
+<style>
+#entry{
+  margin-left: 20%;
+  margin-right: 20%;
+}
+</style>

@@ -1,6 +1,6 @@
 <template>
   <v-container class="mx-auto">
-    <v-row>
+    <v-row class="mx-16">
       <v-text-field id="product"
         v-model="product"
         :placeholder='"Enter your product here"'
@@ -32,16 +32,8 @@ export default {
     amount: Number
   }),
   methods: {
-    increase: function () {
-      this.amount += 1
-    },
-    decrease: function () {
-      if (this.amount > 0) {
-        this.amount -= 1
-      }
-    },
     emitData: function () {
-      if (this.product.length === 0) {
+      if (this.product == null || this.amount.isNaN || this.amount <= 0) {
         return
       }
       this.$emit('DataAdd', { name: this.product, amount: this.amount })

@@ -3,13 +3,14 @@ const app = express();
 const fs = require("fs");
 const cors = require("cors");
 const port = 8080;
-const filename = __dirname + "products.json";
+const filename = __dirname + "/products.json";
 
 //Middleware
 app.use(express.json());
 app.use(cors());
 function log(req, res, next){
     console.log(req.method + " Request at " + req.url);
+    next();
 }
 app.use(log);
 
@@ -60,7 +61,7 @@ app.delete("/products/:id", function (req, res){
     });
 });
 
-app.post("/products/", function (req, res){
+app.post("/products", function (req, res){
     fs.readFile(filename, "utf8", function (err, data) {
         let product = JSON.parse(data);
         product.push({
@@ -76,7 +77,5 @@ app.post("/products/", function (req, res){
         });
     });
 });
-
-
 
 app.listen(port, () => console.log('Server listening on port $(port)'));

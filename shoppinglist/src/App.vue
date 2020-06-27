@@ -32,7 +32,8 @@
       v-for="(entry, index) in products"
       :key="index"
       :product="entry"
-      :index="index"/>
+      :index="index"
+      @removeEntry="removeEntry"/>
       </v-content>
   </v-app>
 </template>
@@ -57,6 +58,12 @@ export default {
   },
 
   methods: {
+    removeEntry: function (e) {
+      axios.delete('http://localhost:8080/products/' + e.id).then(response => {
+        this.products = response.data
+      })
+    },
+
     AddData: function (e) {
       axios.post('http://localhost:8080/products', { name: e.name, amount: e.amount }).then(response => {
         this.products = response.data

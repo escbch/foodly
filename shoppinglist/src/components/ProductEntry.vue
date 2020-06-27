@@ -1,0 +1,45 @@
+<template>
+  <!--<div>
+    <span> {{ product.name }}</span>
+    <v-text-field
+      type="number"
+      step="1"
+      min="0"
+      class="pa-2"
+      solo
+      v-model="product.amount">
+      </v-text-field>
+  </div>-->
+  <v-form>
+    <v-container
+     style="height: 80px;">
+      <v-row>
+        <v-col>
+          <v-text-field class="pa-2" solo readonly v-model="product.name"></v-text-field>
+        </v-col>
+        <v-col lg="2">
+          <v-text-field
+          type="number"
+          step="1"
+          min="0"
+          class="pa-2"
+          solo
+          v-model="product.amount"></v-text-field>
+        </v-col>
+        <v-col lg="1">
+          <v-btn class="mt-3" icon centered color="red">
+            <v-icon medium>highlight_off</v-icon>
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-form>
+</template>
+
+<script>
+export default {
+  name: 'ProductEntry',
+
+  props: ['product', 'index']
+}
+</script>

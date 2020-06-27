@@ -1,39 +1,47 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-    </v-app-bar>
-
+    <v-card class="overflow-hidden">
+      <v-app-bar
+        app
+        color="#6A76AB"
+        dark
+        prominent
+        src="https://picsum.photos/1920/1080?random"
+      >
+        <template v-slot:img="{ props }">
+          <v-img
+            v-bind="props"
+            gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.7)"
+          ></v-img>
+        </template>
+        <v-list-item-group id="nav" class="mt-2">
+          <v-list-item>
+            <router-link to='/'>
+              <v-row>
+                <blockquote class="blockqoute">SHOPPING LIST</blockquote>
+                <v-icon class="ml-3">shopping_cart</v-icon>
+              </v-row>
+            </router-link>
+          </v-list-item>
+          <v-list-item>
+            <router-link to='/find'>
+              <v-row>
+                <blockquote class="blockqoute">FIND PRODUCT</blockquote>
+                <v-icon class="ml-3">search</v-icon>
+              </v-row>
+            </router-link>
+          </v-list-item>
+        </v-list-item-group>
+      </v-app-bar>
+    </v-card>
     <v-content>
-    <AddProduct @DataAdd="AddData"/>
-    <ProductEntry id="entry"
-      v-for="(entry, index) in products"
-      :key="index"
-      :product="entry"
-      :index="index"/>
-      </v-content>
+      <AddProduct @DataAdd="AddData"/>
+      <ProductEntry id="entry"
+        v-for="(entry, index) in products"
+        :key="index"
+        :product="entry"
+        :index="index"/>
+    </v-content>
   </v-app>
 </template>
 
@@ -70,5 +78,16 @@ export default {
 #entry{
   margin-left: 20%;
   margin-right: 20%;
+}
+#nav a{
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+#nav a.router-link-exact-active {
+  color: white;
+  font-size: 100%;
+  text-decoration: none;
 }
 </style>

@@ -8,8 +8,7 @@
         clearable
       ></v-text-field>
       <v-text-field id="numberField"
-        ref="numberField"
-        v-model.number="amount"
+        v-model="amount"
         type="number"
         min="1"
         :placeholder='"amount"'

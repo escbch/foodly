@@ -1,11 +1,10 @@
 <template>
   <v-app>
-    <v-card class="overflow-hidden">
+    <v-card>
       <v-app-bar
         app
         color="#6A76AB"
         dark
-        prominent
         src="https://picsum.photos/1920/1080?random"
       >
         <template v-slot:img="{ props }">

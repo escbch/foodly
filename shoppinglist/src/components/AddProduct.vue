@@ -1,5 +1,5 @@
 <template>
-  <v-container class="mx-auto">
+  <v-container class="mx-auto" dark>
     <v-row class="mx-16">
       <v-text-field id="product"
         v-model="product"
@@ -16,7 +16,16 @@
         clearable
         >
       </v-text-field>
-      <v-btn color="primary" class="mt-2" v-on:click="emitData">Add</v-btn>
+      <v-btn color="primary" class="mt-3" v-on:click="emitData">Add</v-btn>
+      <v-snackbar
+        bottom
+        v-model="snackbar"
+        color="red darken-2"
+        >Wrong or missing values entered
+        <template v-slot:action="{ attrs }">
+          <v-btn dark text v-bind="attrs" @click="snackbar = false">Close</v-btn>
+        </template>
+      </v-snackbar>
     </v-row>
   </v-container>
 </template>
@@ -28,14 +37,16 @@ export default {
   data: () => ({
     rounded: true,
     product: '',
-    amount: Number
+    amount: Number,
+    snackbar: false
   }),
   methods: {
     emitData: function () {
       if (this.product == null || this.amount.isNaN || this.amount <= 0) {
+        this.snackbar = true
         return
       }
-      this.$emit('DataAdd', { name: this.product, amount: this.amount })
+      this.$emit('addData', { name: this.product, amount: this.amount })
       this.product = ''
       this.amount = 0
     }

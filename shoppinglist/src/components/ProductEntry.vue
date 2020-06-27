@@ -13,7 +13,8 @@
           min="0"
           class="pa-2"
           solo
-          v-model="product.amount"></v-text-field>
+          v-model="product.amount"
+          @change="update"></v-text-field>
         </v-col>
         <v-col lg="1">
           <v-btn class="mt-3" icon centered color="red" v-on:click="remove">
@@ -34,6 +35,9 @@ export default {
   methods: {
     remove () {
       this.$emit('removeEntry', this.product)
+    },
+    update () {
+      this.$emit('updateEntry', this.product)
     }
   }
 }

@@ -1,40 +1,22 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-    </v-app-bar>
-
     <v-content>
-    <AddProduct @DataAdd="AddData"/>
-    <ProductEntry id="entry"
-      v-for="(entry, index) in products"
-      :key="index"
-      :product="entry"
-      :index="index"
-      @removeEntry="removeEntry"/>
-      </v-content>
+      <div
+        v-scroll.self="onScroll">
+        <v-banner
+          id="input"
+          sticky>
+          <AddProduct @DataAdd="AddData"/>
+        </v-banner>
+        <ProductEntry id="entry"
+          v-for="(entry, index) in products"
+          :key="index"
+          :product="entry"
+          :index="index"
+          @removeEntry="removeEntry"
+          @updateEntry="updateEntry"/>
+      </div>
+    </v-content>
   </v-app>
 </template>
 
@@ -58,6 +40,12 @@ export default {
   },
 
   methods: {
+    updateEntry: function (e) {
+      axios.put('http://localhost:8080/products/' + e.id, e).then(response => {
+        this.products = response.data
+      })
+    },
+
     removeEntry: function (e) {
       axios.delete('http://localhost:8080/products/' + e.id).then(response => {
         this.products = response.data
@@ -74,8 +62,12 @@ export default {
 </script>
 
 <style>
-#entry{
+#list{
   margin-left: 20%;
   margin-right: 20%;
+  min-height: 100%;
+}
+#input{
+  background-color: white;
 }
 </style>

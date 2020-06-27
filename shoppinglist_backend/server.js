@@ -52,6 +52,9 @@ app.delete("/products/:id", function (req, res){
     fs.readFile(filename, "utf8", function (err, data) {
         let product = JSON.parse(data);
         product.splice(req.params.id, 1);
+        for(let i = 0; i < product.length; i++){
+            product[i].id = i;
+            }
         fs.writeFile(filename, JSON.stringify(product), () => {
             res.writeHead(200, {
                 "Content-Type": "application/json",

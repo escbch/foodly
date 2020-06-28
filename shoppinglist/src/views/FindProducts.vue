@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <h1>Find your Meal here</h1>
-    <SearchMask @searchMeal="getMeals"/>
+    <SearchMask @search="getMeals"/>
     <SearchList @addProduct=addProduct :meals="meals"/>
   </v-container>
 </template>
@@ -19,7 +19,8 @@ export default {
   },
   data: function () {
     return {
-      meals: []
+      meals: [],
+      urls: ['https://www.themealdb.com/api/json/v1/1/search.php?s=', 'https://www.themealdb.com/api/json/v1/1/filter.php?i=', 'https://www.themealdb.com/api/json/v1/1/random.php']
     }
   },
   methods: {
@@ -27,7 +28,7 @@ export default {
       axios.post('http://localhost:8080/products', { name: e.product, amount: e.amount })
     },
     getMeals: function (e) {
-      axios.get('https://www.themealdb.com/api/json/v1/1/search.php?s=' + e).then(response => {
+      axios.get(this.urls[e.index] + e.str).then(response => {
         this.meals = response.data.meals
         for (var i = 0; i < this.meals.length; i++) {
           const ingrediants = []

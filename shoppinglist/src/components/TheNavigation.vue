@@ -3,6 +3,7 @@
     app
     dark
     expand-on-hover
+    clipped
     >
       <v-list nav id="nav">
         <router-link to='/'>
@@ -35,13 +36,11 @@
 
 <style scoped>
 #nav a{
-  color: gray;
   text-decoration: none;
   font-size: 100%;
 }
 
 #nav a.router-link-exact-active {
-  color: gray;
   font-size: 100%;
   text-decoration: none;
 }

@@ -1,19 +1,17 @@
 <template>
-  <div class="home">
-      <div>
-        <v-banner
-          id="input"
-          sticky>
-          <AddProduct @addData="addData"/>
-        </v-banner>
-        <ProductEntry id="entry"
-          v-for="(entry, index) in products"
-          :key="index"
-          :product="entry"
-          :index="index"
-          @removeEntry="removeEntry"
-          @updateEntry="updateEntry"/>
-      </div>
+  <div>
+    <v-banner
+      id="input"
+      sticky>
+      <AddProduct @addData="addData"/>
+    </v-banner>
+    <ProductEntry
+      v-for="(entry, index) in products"
+      :key="index"
+      :product="entry"
+      :index="index"
+      @removeEntry="removeEntry"
+      @updateEntry="updateEntry"/>
   </div>
 </template>
 
@@ -53,6 +51,11 @@ export default {
         this.products = response.data
       })
     }
+  },
+  mounted () {
+    axios.post('http://localhost:8080/products').then(response => {
+      this.products = response.data
+    })
   }
 }
 </script>

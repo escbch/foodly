@@ -25,7 +25,7 @@
             </v-list-item-action>
             <v-list-item-content>
                <v-list-item-title class="title">
-                  Search Products
+                  Search Meals
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>

@@ -3,11 +3,11 @@
       <v-row>
           <v-text-field
           v-model="searchMeal"
-          :placeholder='"Enter your meal here"'
+          :placeholder='"Enter the name of your meal here"'
           clearable
           />
           <v-btn v-on:click="search" color="primary" class="mt-3">Search</v-btn>
-        </v-row>
+      </v-row>
     </v-container>
 </template>
 

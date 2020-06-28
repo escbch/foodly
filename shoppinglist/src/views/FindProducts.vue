@@ -37,8 +37,6 @@ export default {
           }
           this.meals[i].ingrediants = ingrediants
         }
-      }).catch((error) => {
-        alert(error)
       })
     }
   }

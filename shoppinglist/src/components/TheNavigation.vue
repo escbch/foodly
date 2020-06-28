@@ -2,9 +2,8 @@
     <v-navigation-drawer
     app
     dark
-    expand-on-hover
-    clipped
-    >
+    floating
+    expand-on-hover    >
       <v-list nav id="nav">
         <router-link to='/'>
           <v-list-item link>

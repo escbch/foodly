@@ -4,7 +4,7 @@
      style="height: 80px;">
       <v-row>
         <v-col>
-          <v-text-field class="pa-2" solo readonly v-model="product.name"></v-text-field>
+          <v-row><v-checkbox></v-checkbox><v-text-field class="pa-2" solo readonly v-model="product.name"></v-text-field></v-row>
         </v-col>
         <v-col lg="2">
           <v-text-field

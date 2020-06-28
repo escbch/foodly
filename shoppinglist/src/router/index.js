@@ -7,12 +7,12 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'Shopping List',
     component: Home
   },
   {
     path: '/find',
-    name: 'FindProducts',
+    name: 'Search Meals',
     component: () => import(/* webpackChunkName: "search" */ '../views/FindProducts.vue')
   }
 ]

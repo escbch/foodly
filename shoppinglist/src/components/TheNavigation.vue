@@ -37,11 +37,10 @@
 <style scoped>
 #nav a{
   text-decoration: none;
-  font-size: 100%;
 }
 
 #nav a.router-link-exact-active {
-  font-size: 100%;
+  color: #1976D2;
   text-decoration: none;
 }
 </style>

@@ -48,7 +48,7 @@ export default {
       }
       this.$emit('addData', { name: this.product, amount: this.amount })
       this.product = ''
-      this.amount = 0
+      this.amount = 1
     }
   }
 }

@@ -8,9 +8,6 @@
         </v-col>
         <v-col lg="2">
           <v-text-field
-          type="number"
-          step="1"
-          min="0"
           class="pa-2"
           solo
           v-model="product.amount"

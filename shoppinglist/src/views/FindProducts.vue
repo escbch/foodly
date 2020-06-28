@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1>Find your Product here</h1>
+    <h1>Find your Meal here</h1>
     <SearchMask @searchMeal="getMeals"/>
     <SearchList @addProduct=addProduct :meals="meals"/>
   </v-container>

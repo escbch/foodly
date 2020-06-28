@@ -1,7 +1,7 @@
 <template>
     <v-container>
       <v-card
-      style="margin-left: 20%; margin-right: 20%; margin-top: 20px;"
+      style="margin-left: 2%; margin-right: 2%; margin-top: 20px;"
       v-for="meal in meals"
       :key="meal.idMeal"
       >

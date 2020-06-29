@@ -29,8 +29,16 @@ export default {
       axios.post('http://localhost:8080/products', { name: e.product, amount: e.amount })
     },
     addFav: function (e) {
-      axios.post('http://localhost:8080/favourites', { mealId: e }).then(response => {
+      const favMeal = this.getFavMeal(e)
+      // alert(favMeal.name)
+      axios.post('http://localhost:8080/favourites', favMeal).then(response => {
         this.favs = response.data
+      })
+    },
+    getFavMeal: function (idMeal) {
+      axios.get('https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + idMeal).then(res => {
+        alert(res.data.meals.idMeal)
+        return res.data.meals
       })
     },
     removeFav: function (e) {
@@ -58,7 +66,7 @@ export default {
     }
   },
   mounted () {
-    axios.get('http://localhost:8080/favs').then(response => {
+    axios.get('http://localhost:8080/favourites').then(response => {
       this.favs = response.data
     })
   }

@@ -108,8 +108,8 @@ app.post("/products", function (req, res){
 app.post("/favourites", function (req, res){
     fs.readFile(filename1, "utf8", function (err, data) {
         let fav = JSON.parse(data);
-        if (fav.indexOf(req.body.mealId) == -1){
-            fav.push(req.body.mealId);
+        if (fav.map(function(e) {return e.idMeal; }).indexOf(req.body.idMeal) == -1){
+            fav.push({idMeal: req.body.idMeal, meal: req.body});
         }
         fs.writeFile(filename1, JSON.stringify(fav), () => {
             res.writeHead(200, {

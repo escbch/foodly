@@ -4,6 +4,7 @@ const fs = require("fs");
 const cors = require("cors");
 const port = 8080;
 const filename = __dirname + "/products.json";
+const filename1 = __dirname + "/favourites.json";
 
 //Middleware
 app.use(express.json());
@@ -23,6 +24,15 @@ app.get("/products", function (req, res){
         res.end(data);
     });
 });
+
+app.get("/favourites", function (req, res){
+    fs.readFile(filename1, "utf8", function (err, data) {
+        res.writeHead(200, {
+            "Content-Type": "application/json",
+        });
+        res.end(data);
+    })
+})
 
 app.get("/products/:id", function (req, res){
     fs.readFile(filename, "utf8", function (err, data) {
@@ -54,7 +64,7 @@ app.delete("/products/:id", function (req, res){
         product.splice(req.params.id, 1);
         for(let i = 0; i < product.length; i++){
             product[i].id = i;
-            }
+        }
         fs.writeFile(filename, JSON.stringify(product), () => {
             res.writeHead(200, {
                 "Content-Type": "application/json",
@@ -63,6 +73,20 @@ app.delete("/products/:id", function (req, res){
         });
     });
 });
+
+app.delete("/favourites/:id", function (req, res){
+    fs.readFile(filename1, "utf8", function (err, data) {
+        let fav = JSON.parse(data);
+        let index = fav.indexOf(req.params.id)
+        fav.splice(index, 1);
+        fs.writeFile(filename1, JSON.stringify(fav), () => {
+            res.writeHead(200, {
+                "Content-Type": "application/json",
+            });
+            res.end(JSON.stringify(fav));
+        })
+    })
+})
 
 app.post("/products", function (req, res){
     fs.readFile(filename, "utf8", function (err, data) {
@@ -80,5 +104,20 @@ app.post("/products", function (req, res){
         });
     });
 });
+
+app.post("/favourites", function (req, res){
+    fs.readFile(filename1, "utf8", function (err, data) {
+        let fav = JSON.parse(data);
+        if (fav.indexOf(req.body.mealId) == -1){
+            fav.push(req.body.mealId);
+        }
+        fs.writeFile(filename1, JSON.stringify(fav), () => {
+            res.writeHead(200, {
+                "Content-Type": "application/json",
+            });
+            res.end(JSON.stringify(fav));
+        })
+    })
+})
 
 app.listen(port, () => console.log(`Server listening on port ${port}`));

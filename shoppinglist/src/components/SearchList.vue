@@ -5,7 +5,7 @@
       v-for="meal in meals"
       :key="meal.idMeal"
       >
-      <MealEntry @addProduct="addIngredients" :meal="meal"/>
+      <MealEntry @addProduct="addIngredients" @removeFav="removeFav" @addFav="addFav" :meal="meal" :favourite="inFavs(meal.idMeal)"/>
       </v-card>
       <v-card
         v-if="meals == null">
@@ -21,6 +21,20 @@
         :timeout="2000"
         >Added to shopping list
       </v-snackbar>
+      <v-snackbar
+        bottom
+        v-model="snackbar1"
+        color="green darken-2"
+        :timeout="2000"
+        >Added to favourites
+      </v-snackbar>
+      <v-snackbar
+        bottom
+        v-model="snackbar2"
+        color="red darken-2"
+        :timeout="2000"
+        >Removed from favourites
+      </v-snackbar>
     </v-container>
 </template>
 
@@ -35,16 +49,30 @@ export default {
     MealEntry
   },
 
-  props: ['meals'],
+  props: ['meals', 'favs'],
 
   data: () => ({
     show: true,
-    snackbar: false
+    color: 'gray',
+    snackbar: false,
+    snackbar1: false,
+    snackbar2: false
   }),
   methods: {
     addIngredients: function (ingredient) {
       this.snackbar = true
       this.$emit('addProduct', ingredient)
+    },
+    addFav: function (mealId) {
+      this.snackbar1 = true
+      this.$emit('addFav', mealId)
+    },
+    removeFav: function (mealId) {
+      this.snackbar2 = true
+      this.$emit('removeFav', mealId)
+    },
+    inFavs: function (idMeal) {
+      return this.favs.indexOf(idMeal) !== -1
     }
   }
 }

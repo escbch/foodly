@@ -1,9 +1,12 @@
 <template>
-    <v-card>
+    <v-card :key="favourite">
         <v-img
           height=250
           :src=meal.strMealThumb
          />
+        <v-btn icon :color="setColor" v-on:click="fav($event, meal.idMeal)">
+          <v-icon>mdi-heart</v-icon>
+        </v-btn>
             <v-expansion-panels>
               <v-expansion-panel>
                 <v-expansion-panel-header>{{ meal.strMeal }}</v-expansion-panel-header>
@@ -51,14 +54,25 @@
 export default {
   name: 'MealEntry',
 
-  props: ['meal'],
+  props: ['meal', 'favourite'],
 
   methods: {
     add: function (event, ingrediant) {
       this.$emit('addProduct', ingrediant)
+    },
+    fav: function (event, id) {
+      if (this.favourite) {
+        this.$emit('removeFav', id)
+      } else {
+        this.$emit('addFav', id)
+      }
+    }
+  },
+  computed: {
+    setColor: function () {
+      return this.favourite ? 'red' : 'grey'
     }
   }
-
 }
 </script>
 

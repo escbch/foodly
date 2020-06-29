@@ -2,7 +2,7 @@
   <v-container>
     <h1>Find your Meal here</h1>
     <SearchMask @search="getMeals"/>
-    <SearchList @addProduct=addProduct :meals="meals"/>
+    <SearchList @addProduct="addProduct" @addFav="addFav" @removeFav="removeFav" :meals="meals" :favs="favs"/>
   </v-container>
 </template>
 
@@ -20,12 +20,23 @@ export default {
   data: function () {
     return {
       meals: [],
+      favs: [],
       urls: ['https://www.themealdb.com/api/json/v1/1/search.php?s=', 'https://www.themealdb.com/api/json/v1/1/filter.php?i=', 'https://www.themealdb.com/api/json/v1/1/random.php']
     }
   },
   methods: {
     addProduct: function (e) {
       axios.post('http://localhost:8080/products', { name: e.product, amount: e.amount })
+    },
+    addFav: function (e) {
+      axios.post('http://localhost:8080/favourites', { mealId: e }).then(response => {
+        this.favs = response.data
+      })
+    },
+    removeFav: function (e) {
+      axios.delete('http://localhost:8080/favourites/' + e).then(response => {
+        this.favs = response.data
+      })
     },
     getMeals: function (e) {
       axios.get(this.urls[e.index] + e.str).then(response => {
@@ -45,6 +56,11 @@ export default {
         }
       })
     }
+  },
+  mounted () {
+    axios.get('http://localhost:8080/favs').then(response => {
+      this.favs = response.data
+    })
   }
 }
 </script>

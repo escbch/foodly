@@ -3,8 +3,8 @@ const app = express();
 const fs = require("fs");
 const cors = require("cors");
 const port = 8080;
-const filename = __dirname + "/products.json";
-const filename1 = __dirname + "/favourites.json";
+const productsFilename = __dirname + "/products.json";
+const favouritesFilename = __dirname + "/favourites.json";
 
 //Middleware
 app.use(express.json());
@@ -15,9 +15,10 @@ function log(req, res, next){
 }
 app.use(log);
 
-//Endpoints
+// Endpoints
+// Products
 app.get("/products", function (req, res){
-    fs.readFile(filename, "utf8", function (err, data) {
+    fs.readFile(productsFilename, "utf8", function (err, data) {
         res.writeHead(200, {
             "Content-Type": "application/json",
         });
@@ -25,17 +26,8 @@ app.get("/products", function (req, res){
     });
 });
 
-app.get("/favourites", function (req, res){
-    fs.readFile(filename1, "utf8", function (err, data) {
-        res.writeHead(200, {
-            "Content-Type": "application/json",
-        });
-        res.end(data);
-    })
-})
-
 app.get("/products/:id", function (req, res){
-    fs.readFile(filename, "utf8", function (err, data) {
+    fs.readFile(productsFilename, "utf8", function (err, data) {
         const product = JSON.parse(data)[req.params.id];
         res.writeHead(200, {
             "Content-Type": "application/json",
@@ -45,12 +37,12 @@ app.get("/products/:id", function (req, res){
 });
 
 app.put("/products/:id", function (req, res){
-    fs.readFile(filename, "utf8", function (err, data) {
+    fs.readFile(productsFilename, "utf8", function (err, data) {
         let product = JSON.parse(data);
         product[req.params.id].name = req.body.name;
         product[req.params.id].amount = req.body.amount;
         product[req.params.id].checked = req.body.checked;
-        fs.writeFile(filename, JSON.stringify(product), () => {
+        fs.writeFile(productsFilename, JSON.stringify(product), () => {
             res.writeHead(200, {
                 "Content-Type": "application/json",
             });
@@ -60,13 +52,13 @@ app.put("/products/:id", function (req, res){
 });
 
 app.delete("/products/:id", function (req, res){
-    fs.readFile(filename, "utf8", function (err, data) {
+    fs.readFile(productsFilename, "utf8", function (err, data) {
         let product = JSON.parse(data);
         product.splice(req.params.id, 1);
         for(let i = 0; i < product.length; i++){
             product[i].id = i;
         }
-        fs.writeFile(filename, JSON.stringify(product), () => {
+        fs.writeFile(productsFilename, JSON.stringify(product), () => {
             res.writeHead(200, {
                 "Content-Type": "application/json",
             });
@@ -75,22 +67,8 @@ app.delete("/products/:id", function (req, res){
     });
 });
 
-app.delete("/favourites/:id", function (req, res){
-    fs.readFile(filename1, "utf8", function (err, data) {
-        let fav = JSON.parse(data);
-        let index = fav.map(function(e) {return e.idMeal; }).indexOf(req.params.id)
-        fav.splice(index, 1);
-        fs.writeFile(filename1, JSON.stringify(fav), () => {
-            res.writeHead(200, {
-                "Content-Type": "application/json",
-            });
-            res.end(JSON.stringify(fav));
-        })
-    })
-})
-
 app.post("/products", function (req, res){
-    fs.readFile(filename, "utf8", function (err, data) {
+    fs.readFile(productsFilename, "utf8", function (err, data) {
         let product = JSON.parse(data);
         product.push({
             id: product.length,
@@ -98,7 +76,7 @@ app.post("/products", function (req, res){
             amount: req.body.amount,
             checked: req.body.checked,
         });
-        fs.writeFile(filename, JSON.stringify(product), () => {
+        fs.writeFile(productsFilename, JSON.stringify(product), () => {
             res.writeHead(200, {
                 "Content-Type": "application/json",
             });
@@ -107,13 +85,36 @@ app.post("/products", function (req, res){
     });
 });
 
+// favourites
+app.get("/favourites", function (req, res){
+    fs.readFile(favouritesFilename, "utf8", function (err, data) {
+        res.writeHead(200, {
+            "Content-Type": "application/json",
+        });
+        res.end(data);
+    })
+})
+
+app.delete("/favourites/:id", function (req, res){
+    fs.readFile(favouritesFilename, "utf8", function (err, data) {
+        let favourite = JSON.parse(data);
+        favourite.splice(req.params.id, 1);
+        fs.writeFile(favouritesFilename, JSON.stringify(favourite), () => {
+            res.writeHead(200, {
+                "Content-Type": "application/json",
+            });
+            res.end(JSON.stringify(favourite));
+        })
+    })
+})
+
 app.post("/favourites", function (req, res){
-    fs.readFile(filename1, "utf8", function (err, data) {
+    fs.readFile(favouritesFilename, "utf8", function (err, data) {
         let fav = JSON.parse(data);
         if (fav.map(function(e) {return e.idMeal; }).indexOf(req.body.idMeal) == -1){
             fav.push(req.body);
         }
-        fs.writeFile(filename1, JSON.stringify(fav), () => {
+        fs.writeFile(favouritesFilename, JSON.stringify(fav), () => {
             res.writeHead(200, {
                 "Content-Type": "application/json",
             });

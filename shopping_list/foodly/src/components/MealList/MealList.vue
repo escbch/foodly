@@ -11,7 +11,7 @@
         @removeFavourite="removeFavourite"
         @addFavourite="addFavourite"
         :meal="meal"
-        :favourite="isFavourite(meal.idMeal)"/>
+        :isFavourite="isFavourite(meal.idMeal)"/>
       </v-card>
       <v-card
         v-if="!meals">

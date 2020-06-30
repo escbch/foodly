@@ -19,7 +19,7 @@
       >{{meal.strInstructions}}</v-text-area>
       </v-card>
     </v-overlay>
-    <v-card :key="favourite">
+    <v-card :key="isFavourite">
         <v-row>
           <v-card-title class="ml-5">{{ meal.strMeal }}</v-card-title>
           <v-spacer></v-spacer>
@@ -52,7 +52,7 @@ export default {
     MealIngredients
   },
 
-  props: ['meal', 'favourite'],
+  props: ['meal', 'isFavourite'],
 
   data: () => ({
     overlay: false
@@ -66,7 +66,7 @@ export default {
       this.$emit('addIngredient', ingredient)
     },
     toggleFavourite: function (event, meal) {
-      if (this.favourite) {
+      if (this.isFavourite) {
         this.$emit('removeFavourite', meal.idMeal)
       } else {
         this.$emit('addFavourite', meal)
@@ -75,8 +75,7 @@ export default {
   },
   computed: {
     setColor: function () {
-      alert('col')
-      return this.favourite ? 'red' : 'grey'
+      return this.isFavourite ? 'red' : 'grey'
     }
   }
 }

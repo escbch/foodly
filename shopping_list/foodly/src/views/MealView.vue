@@ -61,7 +61,7 @@ export default {
 
   mounted () {
     FavouriteService.getFavourites((data) => {
-      this.favs = data
+      this.favourites = data
     })
   }
 }

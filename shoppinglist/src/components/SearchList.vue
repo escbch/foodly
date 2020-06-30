@@ -53,7 +53,6 @@ export default {
 
   data: () => ({
     show: true,
-    color: 'gray',
     snackbar: false,
     snackbar1: false,
     snackbar2: false
@@ -72,7 +71,8 @@ export default {
       this.$emit('removeFav', mealId)
     },
     inFavs: function (idMeal) {
-      return this.favs.map(function (e) { return e.meal.idMeal }).indexOf(idMeal) !== -1
+      console.log(this.favs.map(function (e) { return e.idMeal }))
+      return this.favs.map(function (e) { return e.idMeal }).indexOf(idMeal) !== -1
     }
   }
 }

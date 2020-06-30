@@ -77,7 +77,7 @@ app.delete("/products/:id", function (req, res){
 app.delete("/favourites/:id", function (req, res){
     fs.readFile(filename1, "utf8", function (err, data) {
         let fav = JSON.parse(data);
-        let index = fav.indexOf(req.params.id)
+        let index = fav.map(function(e) {return e.idMeal; }).indexOf(req.params.id)
         fav.splice(index, 1);
         fs.writeFile(filename1, JSON.stringify(fav), () => {
             res.writeHead(200, {
@@ -108,8 +108,8 @@ app.post("/products", function (req, res){
 app.post("/favourites", function (req, res){
     fs.readFile(filename1, "utf8", function (err, data) {
         let fav = JSON.parse(data);
-        if (fav.map(function(e) {return e.meal.idMeal; }).indexOf(req.body.idMeal) == -1){
-            fav.push({ meal: req.body });
+        if (fav.map(function(e) {return e.idMeal; }).indexOf(req.body.idMeal) == -1){
+            fav.push(req.body);
         }
         fs.writeFile(filename1, JSON.stringify(fav), () => {
             res.writeHead(200, {

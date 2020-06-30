@@ -49,6 +49,7 @@ app.put("/products/:id", function (req, res){
         let product = JSON.parse(data);
         product[req.params.id].name = req.body.name;
         product[req.params.id].amount = req.body.amount;
+        product[req.params.id].checked = req.body.checked;
         fs.writeFile(filename, JSON.stringify(product), () => {
             res.writeHead(200, {
                 "Content-Type": "application/json",
@@ -95,6 +96,7 @@ app.post("/products", function (req, res){
             id: product.length,
             name: req.body.name,
             amount: req.body.amount,
+            checked: req.body.checked,
         });
         fs.writeFile(filename, JSON.stringify(product), () => {
             res.writeHead(200, {

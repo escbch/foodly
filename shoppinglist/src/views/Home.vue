@@ -47,7 +47,7 @@ export default {
     },
 
     addData: function (e) {
-      axios.post('http://localhost:8080/products', { name: e.name, amount: e.amount }).then(response => {
+      axios.post('http://localhost:8080/products', e).then(response => {
         this.products = response.data
       })
     }

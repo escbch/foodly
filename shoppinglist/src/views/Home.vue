@@ -2,7 +2,8 @@
   <div>
     <v-banner
       id="input"
-      sticky>
+      sticky
+      app>
       <AddProduct @addData="addData"/>
     </v-banner>
     <ProductEntry

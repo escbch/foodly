@@ -4,9 +4,6 @@
       app
       clipped-left
       dark
-      flat
-      dense
-      hide-on-scroll
       >
       <v-app-bar-nav-icon v-on:click="displayDrawer"></v-app-bar-nav-icon>
       <v-toolbar-title>{{this.$route.name}}</v-toolbar-title>

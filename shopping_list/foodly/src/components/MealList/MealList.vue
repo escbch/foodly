@@ -40,7 +40,7 @@
 
 <script>
 
-import MealEntry from '@/components/MealEntry.vue'
+import MealEntry from '@/components/MealList/MealEntry.vue'
 
 export default {
   name: 'SearchList',

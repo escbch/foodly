@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <ListFavs :favs="getFavMeals"/>
+        <ListFavs :favs="favs"/>
     </v-container>
 </template>
 

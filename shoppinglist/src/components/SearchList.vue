@@ -63,16 +63,16 @@ export default {
       this.snackbar = true
       this.$emit('addProduct', ingredient)
     },
-    addFav: function (mealId) {
+    addFav: function (meal) {
       this.snackbar1 = true
-      this.$emit('addFav', mealId)
+      this.$emit('addFav', meal)
     },
     removeFav: function (mealId) {
       this.snackbar2 = true
       this.$emit('removeFav', mealId)
     },
     inFavs: function (idMeal) {
-      return this.favs.indexOf(idMeal) !== -1
+      return this.favs.map(function (e) { return e.meal.idMeal }).indexOf(idMeal) !== -1
     }
   }
 }

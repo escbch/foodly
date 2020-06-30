@@ -29,16 +29,8 @@ export default {
       axios.post('http://localhost:8080/products', { name: e.product, amount: e.amount })
     },
     addFav: function (e) {
-      const favMeal = this.getFavMeal(e)
-      // alert(favMeal.name)
-      axios.post('http://localhost:8080/favourites', favMeal).then(response => {
+      axios.post('http://localhost:8080/favourites', e).then(response => {
         this.favs = response.data
-      })
-    },
-    getFavMeal: function (idMeal) {
-      axios.get('https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + idMeal).then(res => {
-        alert(res.data.meals.idMeal)
-        return res.data.meals
       })
     },
     removeFav: function (e) {

@@ -4,7 +4,7 @@
           height=250
           :src=meal.strMealThumb
          />
-        <v-btn icon :color="setColor" v-on:click="fav($event, meal.idMeal)">
+        <v-btn icon :color="setColor" v-on:click="fav($event, meal)">
           <v-icon>mdi-heart</v-icon>
         </v-btn>
             <v-expansion-panels>
@@ -60,11 +60,11 @@ export default {
     add: function (event, ingrediant) {
       this.$emit('addProduct', ingrediant)
     },
-    fav: function (event, id) {
+    fav: function (event, meal) {
       if (this.favourite) {
-        this.$emit('removeFav', id)
+        this.$emit('removeFav', meal.idMeal)
       } else {
-        this.$emit('addFav', id)
+        this.$emit('addFav', meal)
       }
     }
   },

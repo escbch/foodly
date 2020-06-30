@@ -14,21 +14,21 @@
 import ProductEntry from '@/components/ProductList/ProductEntry.vue'
 
 export default {
-    name: 'ProductList',
+  name: 'ProductList',
 
-    components: {
-        ProductEntrys
+  components: {
+    ProductEntry
+  },
+
+  props: ['products'],
+
+  methods: {
+    removeEntry: function (product) {
+      this.$emit('removeEntry', product)
     },
-
-    props: ['products'],
-
-    methods: {
-        removeEntry: function (product) {
-            this.$emit('removeEntry', product)
-        }, 
-        updateEntry: function (product) {
-            this.$emit('updateEntry', product)
-        }
+    updateEntry: function (product) {
+      this.$emit('updateEntry', product)
     }
+  }
 }
 </script>

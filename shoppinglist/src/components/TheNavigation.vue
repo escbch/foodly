@@ -1,9 +1,4 @@
 <template>
-    <v-navigation-drawer
-    app
-    dark
-    clipped
-    >
       <v-list nav id="nav">
         <router-link to='/'>
           <v-list-item link>
@@ -42,8 +37,15 @@
           </v-list-item>
         </router-link>
       </v-list>
-    </v-navigation-drawer>
 </template>
+
+<script>
+export default {
+  name: 'TheNavigation',
+
+  props: ['drawer']
+}
+</script>
 
 <style scoped>
 #nav a{

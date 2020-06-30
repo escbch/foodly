@@ -5,10 +5,17 @@
       clipped-left
       dark
       >
-      <v-app-bar-nav-icon v-on:click="displayDrawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="displayDrawer"></v-app-bar-nav-icon>
       <v-toolbar-title>{{this.$route.name}}</v-toolbar-title>
     </v-app-bar>
-    <TheNavigation v-if="drawer"/>
+    <v-navigation-drawer
+    absolute
+    temporary
+    v-model="drawer"
+    dark
+    >
+    <TheNavigation :key="drawer" :drawer="drawer"/>
+        </v-navigation-drawer>
     <v-content>
       <v-container fluid>
         <router-view/>
@@ -29,7 +36,7 @@ export default {
   }),
   methods: {
     displayDrawer: function () {
-      this.drawer = !this.drawer
+      this.drawer = true
     }
   }
 }

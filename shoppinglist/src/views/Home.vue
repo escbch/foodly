@@ -1,18 +1,68 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <v-banner
+      id="input"
+      sticky
+      app>
+      <AddProduct @addData="addData"/>
+    </v-banner>
+    <ProductEntry
+      v-for="(entry, index) in products"
+      :key="index"
+      :product="entry"
+      :index="index"
+      @removeEntry="removeEntry"
+      @updateEntry="updateEntry"/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import ProductEntry from '@/components/ProductEntry'
+import AddProduct from '@/components/AddProduct.vue'
+import axios from 'axios'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    AddProduct,
+    ProductEntry
+  },
+  data: function () {
+    return {
+      products: []
+    }
+  },
+
+  methods: {
+    updateEntry: function (e) {
+      axios.put('http://localhost:8080/products/' + e.id, e).then(response => {
+        this.products = response.data
+      })
+    },
+
+    removeEntry: function (e) {
+      axios.delete('http://localhost:8080/products/' + e.id).then(response => {
+        this.products = response.data
+      })
+    },
+
+    addData: function (e) {
+      axios.post('http://localhost:8080/products', e).then(response => {
+        this.products = response.data
+      })
+    }
+  },
+  mounted () {
+    axios.get('http://localhost:8080/products').then(response => {
+      this.products = response.data
+    })
   }
 }
 </script>
+
+<style scoped>
+#input{
+  background-color: white;
+}
+</style>

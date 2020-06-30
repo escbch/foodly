@@ -29,7 +29,7 @@
       </v-snackbar>
       <v-snackbar
         bottom
-        v-model="snackbarAddFavourites"
+        v-model="snackbarAddedFavourites"
         color="green darken-2"
         :timeout="2000"
         >Added to favourites
@@ -60,7 +60,7 @@ export default {
   data: () => ({
     show: true,
     snackbarShoppingList: false,
-    snackbarAddFavourites: false,
+    snackbarAddedFavourites: false,
     snackbarRemovedFavourites: false
   }),
   methods: {
@@ -72,7 +72,7 @@ export default {
       this.$emit('addIngredient', ingredient)
     },
     addFavourite: function (meal) {
-      this.snackbarFavourites = true
+      this.snackbarAddedFavourites = true
       this.$emit('addFavourite', meal)
     },
     removeFavourite: function (mealId) {

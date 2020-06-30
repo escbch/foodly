@@ -2,7 +2,7 @@
 
 ## Project setup
 ```
-vue add vutify
+vue add vuetify
 npm install material-design-icons-iconfont -D
 npm install
 ```

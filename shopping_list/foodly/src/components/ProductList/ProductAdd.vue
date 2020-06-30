@@ -1,23 +1,27 @@
 <template>
-  <v-container class="mx-auto" dark>
-    <v-row class="mx-16">
-      <v-text-field id="product"
-        v-model="product"
-        :placeholder='"Enter your product here"'
-        :rounded="rounded"
-        clearable
-      ></v-text-field>
-      <v-text-field id="numberField"
-        v-model="amount"
-        type="number"
-        min="1"
-        :placeholder='"amount"'
-        :rounded="rounded"
-        clearable
-        >
-      </v-text-field>
-      <v-btn color="primary" class="mt-3" v-on:click="emitData">Add</v-btn>
-      <v-snackbar
+  <v-container>
+    <v-row class="mr-10 ml-10">
+        <v-text-field
+          class="ml-5"
+          v-model="product"
+          :placeholder='"Enter your product here"'
+          rounded
+          clearable
+          solo
+          />
+        <v-text-field
+          v-model="amount"
+          :placeholder='"Amount"'
+          rounded
+          clearable
+          solo
+          />
+        <v-btn
+          color="primary"
+          class="mt-2"
+          v-on:click="emitData">Add</v-btn>
+    </v-row>
+    <v-snackbar
         bottom
         v-model="snackbar"
         color="red darken-2"
@@ -26,7 +30,6 @@
           <v-btn dark text v-bind="attrs" @click="snackbar = false">Close</v-btn>
         </template>
       </v-snackbar>
-    </v-row>
   </v-container>
 </template>
 
@@ -35,9 +38,8 @@ export default {
   name: 'AddProduct',
 
   data: () => ({
-    rounded: true,
     product: '',
-    amount: Number,
+    amount: '',
     snackbar: false
   }),
   methods: {

@@ -9,8 +9,6 @@
 <script>
 import MealSearch from '@/components/MealList/MealSearch.vue'
 import MealList from '@/components/MealList/MealList.vue'
-import MealService from './services/MealService'
-import ProductService from './services/ProductService'
 
 export default {
   name: 'MealView',
@@ -23,12 +21,6 @@ export default {
   data: () => ({
     meals: [],
     favs: []
-  }),
-
-  methods: {
-    addProduct: function (e) {
-      
-    }
-  }
+  })
 }
 </script>

@@ -3,7 +3,6 @@
     app
     dark
     clipped
-    expand-on-hover
     >
       <v-list nav id="nav">
         <router-link to='/'>

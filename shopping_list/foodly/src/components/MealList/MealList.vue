@@ -5,32 +5,38 @@
       v-for="meal in meals"
       :key="meal.idMeal"
       >
-      <MealEntry @addProduct="addIngredients" @removeFav="removeFav" @addFav="addFav" :meal="meal" :favourite="inFavs(meal.idMeal)"/>
+        <MealEntry
+        @addIngredient="addIngredient"
+        @addIngredients="addIngredients"
+        @removeFavourite="removeFavourite"
+        @addFavourite="addFavourite"
+        :meal="meal"
+        :favourite="isFavourite(meal.idMeal)"/>
       </v-card>
       <v-card
-        v-if="meals == null">
+        v-if="!meals">
         <v-img
-        height=500
+        height="500"
         src="https://cdn.pixabay.com/photo/2017/07/28/16/07/plate-2549069_960_720.jpg"/>
         <v-card-title>Oops, there is no meal for that</v-card-title>
       </v-card>
       <v-snackbar
         bottom
-        v-model="snackbar"
+        v-model="snackbarShoppingList"
         color="green darken-2"
         :timeout="2000"
         >Added to shopping list
       </v-snackbar>
       <v-snackbar
         bottom
-        v-model="snackbar1"
+        v-model="snackbarAddFavourites"
         color="green darken-2"
         :timeout="2000"
         >Added to favourites
       </v-snackbar>
       <v-snackbar
         bottom
-        v-model="snackbar2"
+        v-model="snackbarRemovedFavourites"
         color="red darken-2"
         :timeout="2000"
         >Removed from favourites
@@ -49,29 +55,32 @@ export default {
     MealEntry
   },
 
-  props: ['meals', 'favs'],
+  props: ['meals', 'favourites'],
 
   data: () => ({
     show: true,
-    snackbar: false,
-    snackbar1: false,
-    snackbar2: false
+    snackbarShoppingList: false,
+    snackbarAddFavourites: false,
+    snackbarRemovedFavourites: false
   }),
   methods: {
-    addIngredients: function (ingredient) {
-      this.snackbar = true
-      this.$emit('addProduct', ingredient)
+    addIngredients: function (ingredients) {
+      this.$emit('addIngredients', ingredients)
     },
-    addFav: function (meal) {
-      this.snackbar1 = true
-      this.$emit('addFav', meal)
+    addIngredient: function (ingredient) {
+      this.snackbarShoppingList = true
+      this.$emit('addIngredient', ingredient)
     },
-    removeFav: function (mealId) {
-      this.snackbar2 = true
-      this.$emit('removeFav', mealId)
+    addFavourite: function (meal) {
+      this.snackbarFavourites = true
+      this.$emit('addFavourite', meal)
     },
-    inFavs: function (idMeal) {
-      return this.favs.map(function (e) { return e.idMeal }).indexOf(idMeal) !== -1
+    removeFavourite: function (mealId) {
+      this.snackbarRemovedFavourites = true
+      this.$emit('removeFavourite', mealId)
+    },
+    isFavourite: function (idMeal) {
+      return this.favourites.map(function (e) { return e.idMeal }).indexOf(idMeal) !== -1
     }
   }
 }

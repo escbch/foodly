@@ -1,15 +1,15 @@
 <template>
   <v-container>
     <h1>Find your Meal here</h1>
-    <MealSearch @search="getMeals"/>
-    <MealList @addProduct="addProduct" @addFav="addFav" @removeFav="removeFav" :meals="meals" :favs="favs"/>
+    <MealSearch @searchMeals="getMeals" @searchRandomMeal="getRandomMeal"/>
+    <MealList @addIngredient="addIngredient" @addIngredients="addIngredients" @addFavourite="addFavourite" @removeFavourite="removeFavourite" :meals="meals" :favourites="favourites"/>
   </v-container>
 </template>
 
 <script>
 import MealSearch from '@/components/MealList/MealSearch.vue'
 import MealList from '@/components/MealList/MealList.vue'
-import MealService from '@/services/MealService.js'
+import MealService from '../services/MealService'
 import ProductService from '@/services/ProductService.js'
 import FavouriteService from '@/services/FavouriteService.js'
 
@@ -24,26 +24,36 @@ export default {
   data: function () {
     return {
       meals: [],
-      favs: []
+      favourites: []
     }
   },
 
   methods: {
-    addProduct: function (e) {
+    addIngredient: function (e) {
       ProductService.addProduct(e, (data) => {})
     },
-    addFav: function (e) {
-      FavouriteService.addFavourite(e, (data) => {
-        this.favs = data
+    addIngredients: function (e) {
+      e.forEach(ingredient => {
+        ProductService.addProduct(ingredient, (data) => {})
       })
     },
-    removeFav: function (e) {
+    addFavourite: function (e) {
+      FavouriteService.addFavourite(e, (data) => {
+        this.favourites = data
+      })
+    },
+    removeFavourite: function (e) {
       FavouriteService.removeFavourite(e, (data) => {
-        this.favs = data
+        this.favourites = data
       })
     },
     getMeals: function (e) {
       MealService.getMeals(e, (data) => {
+        this.meals = data
+      })
+    },
+    getRandomMeal: function () {
+      MealService.getRandomMeal((data) => {
         this.meals = data
       })
     }

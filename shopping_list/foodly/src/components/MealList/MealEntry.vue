@@ -29,7 +29,7 @@
            <v-btn class="mr-2 mt-3" icon v-on:click="overlay = !overlay">
             <v-icon color="grey" >receipt</v-icon>
           </v-btn>
-          <v-btn class="mr-5 mt-3" icon :color="setColor" v-on:click="fav($event, meal)">
+          <v-btn class="mr-5 mt-3" icon :color="setColor" v-on:click="toggleFavourite($event, meal)">
             <v-icon>mdi-heart</v-icon>
           </v-btn>
         </v-row>
@@ -37,54 +37,20 @@
           height=250
           :src=meal.strMealThumb
          />
-            <v-expansion-panels>
-              <v-expansion-panel>
-                <v-expansion-panel-header>Ingrediants</v-expansion-panel-header>
-                <v-expansion-panel-content>
-                    <div
-                    v-for="(ingrediant, index) in meal.ingrediants "
-                    :key="index">
-                        <v-row>
-                            <v-col>
-                                <v-text-field
-                                readonly
-                                solo
-                                flat
-                                v-model="meal.ingrediants[index].product"
-                                />
-                            </v-col>
-                            <v-col
-                                lg="3">
-                                <v-text-field
-                                    readonly
-                                    solo
-                                    flat
-                                    v-model="meal.ingrediants[index].amount"
-                                    />
-                            </v-col>
-                            <v-col
-                                lg="1">
-                                <v-btn
-                                icon
-                                centered
-                                color="primary"
-                                v-on:click="add($event, ingrediant)">
-                                    <v-icon medium>add</v-icon>
-                                </v-btn>
-                            </v-col>
-                        </v-row>
-                    </div>
-                    <v-btn @click="addAll">Add All</v-btn>
-                </v-expansion-panel-content>
-              </v-expansion-panel>
-            </v-expansion-panels>
+         <MealIngredients :ingredients="meal.ingredients" @addIngredient="addIngredient" @addIngredients="addIngredients"/>
       </v-card>
 </div>
 </template>
 
 <script>
+import MealIngredients from './MealIngredients'
+
 export default {
   name: 'MealEntry',
+
+  components: {
+    MealIngredients
+  },
 
   props: ['meal', 'favourite'],
 
@@ -93,25 +59,23 @@ export default {
   }),
 
   methods: {
-    addAll: function () {
-      alert('add all')
-      for (var i = 0; i < this.meal.ingrediants.length; i++) {
-        this.$emit('addProduct', this.meal.ingrediants[i])
-      }
+    addIngredients: function (e) {
+      this.$emit('addIngredients', e)
     },
-    add: function (event, ingrediant) {
-      this.$emit('addProduct', ingrediant)
+    addIngredient: function (ingredient) {
+      this.$emit('addIngredient', ingredient)
     },
-    fav: function (event, meal) {
+    toggleFavourite: function (event, meal) {
       if (this.favourite) {
-        this.$emit('removeFav', meal.idMeal)
+        this.$emit('removeFavourite', meal.idMeal)
       } else {
-        this.$emit('addFav', meal)
+        this.$emit('addFavourite', meal)
       }
     }
   },
   computed: {
     setColor: function () {
+      alert('col')
       return this.favourite ? 'red' : 'grey'
     }
   }

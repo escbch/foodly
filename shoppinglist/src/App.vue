@@ -9,7 +9,7 @@
       <v-toolbar-title>{{this.$route.name}}</v-toolbar-title>
     </v-app-bar>
     <v-navigation-drawer
-    absolute
+    app
     temporary
     v-model="drawer"
     dark

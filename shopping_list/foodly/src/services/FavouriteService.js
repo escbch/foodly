@@ -9,7 +9,7 @@ export default {
     })
   },
   updateFavourite(favourite, success) {
-    axios.put(path + '/' + favourite.id, favourite).then(response => {
+    axios.put(path + '/' + favourite.idMeal, favourite).then(response => {
       success(response.data)
     })
   },
@@ -19,7 +19,7 @@ export default {
     })
   },
   removeFavourite(favorite, success) {
-    axios.delete(path + '/' + favorite.id).then(response => {
+    axios.delete(path + '/' + favorite.idMeal).then(response => {
       success(response.data)
     })
    }

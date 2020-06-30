@@ -7,13 +7,13 @@ export default {
   getMeals(name, success) {
     axios.get(search_path + name).then(response => {
       //list ingrediants and amounts
-        meals = this.listIngrediants(response.data)
+        let meals = this.listIngrediants(response.data)
         success(meals)
     })
   },
   getRandomMeal(success) {
     axios.get(random_path).then(response => {
-        meals = this.listIngrediants(response.data)
+        let meals = this.listIngrediants(response.data)
         success(meals)
     })
   },

@@ -12,7 +12,7 @@
             </v-list-item-content>
           </v-list-item>
         </router-link>
-        <router-link to='/find'>
+        <router-link to='/search'>
           <v-list-item link>
             <v-list-item-action>
               <v-icon>search</v-icon>

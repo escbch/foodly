@@ -67,6 +67,21 @@ app.delete("/products/:id", function (req, res){
     });
 });
 
+app.delete("/products/", function(req, res){
+    fs.readFile(productsFilename, "utf8", function (err, data) {
+        let product = JSON.parse(data);
+        console.log(product);
+        product = [];
+        console.log(product);
+        fs.writeFile(productsFilename, JSON.stringify(product), () => {
+            res.writeHead(200, {
+                "Content-Type": "application/json",
+            });
+            res.end(JSON.stringify(product));
+        });
+    });
+});
+
 app.post("/products", function (req, res){
     fs.readFile(productsFilename, "utf8", function (err, data) {
         let product = JSON.parse(data);

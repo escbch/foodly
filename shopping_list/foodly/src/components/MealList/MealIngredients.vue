@@ -1,7 +1,9 @@
 <template>
     <v-expansion-panels>
               <v-expansion-panel>
-                <v-expansion-panel-header>Ingredients</v-expansion-panel-header>
+                <v-expansion-panel-header
+                class="text-h6 font-weight-regular"
+                >Ingredients</v-expansion-panel-header>
                 <v-expansion-panel-content>
                     <div
                     v-for="(ingredient, index) in ingredients "

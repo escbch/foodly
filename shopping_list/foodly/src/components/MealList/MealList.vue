@@ -49,7 +49,7 @@
 import MealEntry from '@/components/MealList/MealEntry.vue'
 
 export default {
-  name: 'SearchList',
+  name: 'MealList',
 
   components: {
     MealEntry

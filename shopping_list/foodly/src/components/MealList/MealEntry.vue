@@ -1,9 +1,9 @@
 <template>
 <div>
   <MealRecipe @hideOverlay="overlay = false" :overlay="overlay" :key="overlay" :recipe="meal.strInstructions"/>
-  <v-card :key="isFavourite">
+  <v-card>
      <v-img
-        height=250
+        height=300
         :src=meal.strMealThumb
         />
       <v-row>

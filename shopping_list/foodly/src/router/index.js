@@ -7,7 +7,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Search Meals',
+    name: 'Foodly',
     component: MealView
   },
   {

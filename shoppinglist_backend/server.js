@@ -70,12 +70,23 @@ app.delete("/products/:id", function (req, res){
 app.post("/products", function (req, res){
     fs.readFile(productsFilename, "utf8", function (err, data) {
         let product = JSON.parse(data);
-        product.push({
+        if (req.body.length != undefined){
+            req.body.forEach(ingredient => {
+                product.push({
+                    id: product.length,
+                    name: ingredient.name,
+                    amount: ingredient.amount,
+                    checked: ingredient.checked,
+                });
+            })
+        }else {
+          product.push({
             id: product.length,
             name: req.body.name,
             amount: req.body.amount,
             checked: req.body.checked,
-        });
+          });  
+        }
         fs.writeFile(productsFilename, JSON.stringify(product), () => {
             res.writeHead(200, {
                 "Content-Type": "application/json",

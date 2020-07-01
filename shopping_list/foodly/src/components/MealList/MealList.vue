@@ -7,7 +7,6 @@
       >
         <MealEntry
         @addIngredient="addIngredient"
-        @addIngredients="addIngredients"
         @removeFavourite="removeFavourite"
         @addFavourite="addFavourite"
         :meal="meal"
@@ -64,9 +63,6 @@ export default {
     snackbarRemovedFavourites: false
   }),
   methods: {
-    addIngredients: function (ingredients) {
-      this.$emit('addIngredients', ingredients)
-    },
     addIngredient: function (ingredient) {
       this.snackbarShoppingList = true
       this.$emit('addIngredient', ingredient)

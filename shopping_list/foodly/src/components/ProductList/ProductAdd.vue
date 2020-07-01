@@ -12,20 +12,21 @@
         <v-text-field
           v-model="amount"
           :placeholder='"Amount"'
+          class="ml-3"
           rounded
           clearable
           solo
           />
         <v-btn
           color="primary"
-          class="mt-2"
+          class="mt-2 ml-2"
           v-on:click="emitData">Add</v-btn>
     </v-row>
     <v-snackbar
         bottom
         v-model="snackbar"
         color="red darken-2"
-        >Wrong or missing values entered
+        >Wrong or missing values
         <template v-slot:action="{ attrs }">
           <v-btn dark text v-bind="attrs" @click="snackbar = false">Close</v-btn>
         </template>
@@ -44,7 +45,7 @@ export default {
   }),
   methods: {
     emitData: function () {
-      if (this.product == null || this.amount.isNaN || this.amount <= 0) {
+      if (this.product === '' || this.amount.isNaN || this.amount <= 0) {
         this.snackbar = true
         return
       }

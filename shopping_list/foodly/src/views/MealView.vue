@@ -57,6 +57,7 @@ export default {
     FavouriteService.getFavourites((data) => {
       this.favourites = data
     })
+    this.getRandomMeal()
   }
 }
 </script>

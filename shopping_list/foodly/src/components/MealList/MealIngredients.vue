@@ -38,7 +38,14 @@
                             </v-col>
                         </v-row>
                     </div>
-                    <v-btn @click="addIngredients">Add All</v-btn>
+                    <v-row justify="center">
+                    <v-btn
+                      class="primary mt-6 mb-2"
+                      @click="addIngredients"
+                      solo
+                      rounded
+                      >Add All</v-btn>
+                      </v-row>
                 </v-expansion-panel-content>
               </v-expansion-panel>
             </v-expansion-panels>

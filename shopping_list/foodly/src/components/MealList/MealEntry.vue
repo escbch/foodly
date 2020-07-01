@@ -1,7 +1,8 @@
 <template>
 <div>
   <MealRecipe @hideOverlay="overlay = false" :overlay="overlay" :key="overlay" :recipe="meal.strInstructions"/>
-  <v-card>
+  <v-card
+  class="mt-6">
      <v-img
         height=300
         :src=meal.strMealThumb
@@ -28,28 +29,18 @@
         <v-btn
           class="mr-5 mt-3"
           icon
-          :color="setColor"
+          :color="this.isFavourite ? 'red' : 'grey'"
           v-on:click="toggleFavourite($event, meal)">
           <v-icon>mdi-heart</v-icon>
         </v-btn>
       </v-row>
-        <v-row
-        class="ml-3 mb-4">
-          <v-chip class="ml-2 mr-2">
-            <v-avatar left>
-              <v-icon>fastfood</v-icon>
-            </v-avatar>
-            {{meal.strCategory}}</v-chip>
-          <v-chip>
-            <v-avatar left>
-              <v-icon>place</v-icon>
-            </v-avatar>
-            {{meal.strArea}}</v-chip>
-            <v-spacer/>
-        </v-row>
+      <MealInfo
+        :category="meal.strCategory"
+        :area="meal.strArea"/>
       <MealIngredients
         :ingredients="meal.ingredients"
-        @addIngredient="addIngredient"/>
+        @addIngredient="addIngredient"
+        @addIngredients="addIngredients"/>
     </v-card>
 </div>
 </template>
@@ -57,13 +48,15 @@
 <script>
 import MealIngredients from './MealIngredients'
 import MealRecipe from './MealRecipe'
+import MealInfo from './MealInfo'
 
 export default {
   name: 'MealEntry',
 
   components: {
     MealIngredients,
-    MealRecipe
+    MealRecipe,
+    MealInfo
   },
 
   props: ['meal', 'isFavourite'],
@@ -73,6 +66,9 @@ export default {
   }),
 
   methods: {
+    addIngredients: function (e) {
+      this.$emit('addIngredients', e)
+    },
     addIngredient: function (ingredient) {
       this.$emit('addIngredient', ingredient)
     },
@@ -82,11 +78,6 @@ export default {
       } else {
         this.$emit('addFavourite', meal)
       }
-    }
-  },
-  computed: {
-    setColor: function () {
-      return this.isFavourite ? 'red' : 'grey'
     }
   }
 }

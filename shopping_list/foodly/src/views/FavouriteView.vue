@@ -2,12 +2,13 @@
     <v-container v-if="favourites.length > 0">
         <MealList @addProduct="addProduct" @removeFavourite="removeFavourite" :meals="favourites" :favourites="favourites"/>
     </v-container>
-    <v-content v-else>
-        <v-card>
-            <v-card-title>No favourites here</v-card-title>
-            <v-img height="250" src="https://cdn.pixabay.com/photo/2016/07/31/11/52/table-1558811_960_720.jpg"/>
+    <div v-else>
+        <v-card
+          class="ma-15">
+            <v-img height="500" src="https://cdn.pixabay.com/photo/2016/07/31/11/52/table-1558811_960_720.jpg"/>
+            <v-card-title>Oops, there are no favourites so far</v-card-title>
         </v-card>
-    </v-content>
+    </div>
 </template>
 
 <script>

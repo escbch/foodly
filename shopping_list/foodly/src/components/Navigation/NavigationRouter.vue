@@ -3,23 +3,23 @@
         <router-link to='/'>
           <v-list-item link>
             <v-list-item-action>
-              <v-icon>shopping_cart</v-icon>
+              <v-icon>search</v-icon>
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title class="title">
-                Shopping List
+                  Search Meals
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </router-link>
-        <router-link to='/search'>
+        <router-link to='/list'>
           <v-list-item link>
             <v-list-item-action>
-              <v-icon>search</v-icon>
+              <v-icon>shopping_cart</v-icon>
             </v-list-item-action>
             <v-list-item-content>
                <v-list-item-title class="title">
-                  Search Meals
+                Shopping List
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>

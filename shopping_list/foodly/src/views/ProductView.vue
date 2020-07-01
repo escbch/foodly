@@ -8,6 +8,7 @@
         </v-banner>
         <ProductList
         @removeEntry="removeEntry"
+        @removeAllEntries="removeAllEntries"
         @updateEntry="updateEntry"
         :products="products"/>
     </div>
@@ -16,7 +17,7 @@
 <script>
 import ProductAdd from '@/components/ProductList/ProductAdd.vue'
 import ProductList from '@/components/ProductList/ProductList.vue'
-import ProductService from '@/services/ProductService.js'
+import ProductService from '../services/ProductService.js'
 
 export default {
   name: 'ProductView',
@@ -32,6 +33,11 @@ export default {
   methods: {
     removeEntry: function (e) {
       ProductService.removeProduct(e, (data) => {
+        this.products = data
+      })
+    },
+    removeAllEntries: function () {
+      ProductService.removeAllProducts((data) => {
         this.products = data
       })
     },

@@ -2,6 +2,7 @@
     <v-overlay :value="overlay">
         <v-card
         class="ma-16 pa-10"
+        max-width="1000"
         light>
             <v-row>
                 <v-card-title

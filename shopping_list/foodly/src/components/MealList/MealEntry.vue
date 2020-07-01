@@ -1,7 +1,8 @@
 <template>
 <div>
   <MealRecipe @hideOverlay="overlay = false" :overlay="overlay" :key="overlay" :recipe="meal.strInstructions"/>
-  <v-card>
+  <v-card
+  class="mt-6">
      <v-img
         height=300
         :src=meal.strMealThumb
@@ -38,7 +39,8 @@
         :area="meal.strArea"/>
       <MealIngredients
         :ingredients="meal.ingredients"
-        @addIngredient="addIngredient"/>
+        @addIngredient="addIngredient"
+        @addIngredients="addIngredients"/>
     </v-card>
 </div>
 </template>
@@ -64,6 +66,9 @@ export default {
   }),
 
   methods: {
+    addIngredients: function (e) {
+      this.$emit('addIngredients', e)
+    },
     addIngredient: function (ingredient) {
       this.$emit('addIngredient', ingredient)
     },

@@ -1,6 +1,5 @@
 <template>
   <v-container>
-    <h1>Find your Meal here</h1>
     <MealSearch @searchMeals="getMeals" @searchRandomMeal="getRandomMeal"/>
     <MealList @addIngredient="addIngredient" @addFavourite="addFavourite" @removeFavourite="removeFavourite" :meals="meals" :favourites="favourites"/>
   </v-container>

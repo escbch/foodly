@@ -75,9 +75,9 @@ export default {
       this.snackbarAddedFavourites = true
       this.$emit('addFavourite', meal)
     },
-    removeFavourite: function (mealId) {
+    removeFavourite: function (meal) {
       this.snackbarRemovedFavourites = true
-      this.$emit('removeFavourite', mealId)
+      this.$emit('removeFavourite', meal)
     },
     isFavourite: function (idMeal) {
       return this.favourites.map(function (e) { return e.idMeal }).indexOf(idMeal) !== -1

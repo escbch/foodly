@@ -67,7 +67,7 @@ export default {
     },
     toggleFavourite: function (event, meal) {
       if (this.isFavourite) {
-        this.$emit('removeFavourite', meal.idMeal)
+        this.$emit('removeFavourite', meal)
       } else {
         this.$emit('addFavourite', meal)
       }

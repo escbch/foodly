@@ -71,7 +71,6 @@ export default {
       this.$emit('removeFav', mealId)
     },
     inFavs: function (idMeal) {
-      console.log(this.favs.map(function (e) { return e.idMeal }))
       return this.favs.map(function (e) { return e.idMeal }).indexOf(idMeal) !== -1
     }
   }

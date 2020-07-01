@@ -98,7 +98,8 @@ app.get("/favourites", function (req, res){
 app.delete("/favourites/:id", function (req, res){
     fs.readFile(favouritesFilename, "utf8", function (err, data) {
         let favourite = JSON.parse(data);
-        favourite.splice(req.params.id, 1);
+        let index = favourite.map(function(e) { return e.idMeal; }).indexOf(req.params.id)
+        favourite.splice(index, 1);
         fs.writeFile(favouritesFilename, JSON.stringify(favourite), () => {
             res.writeHead(200, {
                 "Content-Type": "application/json",

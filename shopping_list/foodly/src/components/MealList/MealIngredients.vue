@@ -55,7 +55,7 @@ export default {
       this.$emit('addIngredient', ingredient)
     },
     addIngredients () {
-      this.$emit('addIngredients', this.ingredients)
+      this.$emit('addIngredient', this.ingredients)
     }
   }
 }

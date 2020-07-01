@@ -2,7 +2,7 @@
   <v-container>
     <h1>Find your Meal here</h1>
     <MealSearch @searchMeals="getMeals" @searchRandomMeal="getRandomMeal"/>
-    <MealList @addIngredient="addIngredient" @addIngredients="addIngredients" @addFavourite="addFavourite" @removeFavourite="removeFavourite" :meals="meals" :favourites="favourites"/>
+    <MealList @addIngredient="addIngredient" @addFavourite="addFavourite" @removeFavourite="removeFavourite" :meals="meals" :favourites="favourites"/>
   </v-container>
 </template>
 
@@ -31,11 +31,6 @@ export default {
   methods: {
     addIngredient: function (e) {
       ProductService.addProduct(e, (data) => {})
-    },
-    addIngredients: function (e) {
-      e.forEach(ingredient => {
-        ProductService.addProduct(ingredient, (data) => {})
-      })
     },
     addFavourite: function (e) {
       FavouriteService.addFavourite(e, (data) => {

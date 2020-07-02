@@ -1,36 +1,23 @@
 <template>
-  <v-form>
-    <v-container
-     style="height: 80px;">
-      <v-row>
-        <v-col>
-          <v-row>
-            <v-checkbox
-            v-model="product.checked"
-            @change="update"
-            />
-            <v-text-field
-            class="pa-2"
-            solo
-            readonly
-            v-model="product.name"/>
-            </v-row>
-        </v-col>
-        <v-col lg="2">
-          <v-text-field
-          class="pa-2"
-          solo
-          v-model="product.amount"
-          @change="update"></v-text-field>
-        </v-col>
-        <v-col lg="1">
-          <v-btn class="mt-3" icon centered color="red" v-on:click="remove">
-            <v-icon medium>highlight_off</v-icon>
-          </v-btn>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-form>
+<v-card
+  class="ml-10 mr-10 mt-4">
+  <v-list-item>
+    <v-checkbox
+    class="ml-2 mr-5"
+      v-model="product.checked"
+      @change="update"
+      />
+    <v-list-item-title class="font-weight-medium ">
+      {{ product.name }}
+    </v-list-item-title>
+    <v-list-item-subtitle class="text-right">
+      {{ product.amount }}
+    </v-list-item-subtitle>
+    <v-btn class="ml-6 mr-2" icon centered color="red" v-on:click="remove">
+      <v-icon medium>highlight_off</v-icon>
+    </v-btn>
+  </v-list-item>
+</v-card>
 </template>
 
 <script>

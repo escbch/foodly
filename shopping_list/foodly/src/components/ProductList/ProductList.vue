@@ -7,7 +7,7 @@
       :index="index"
       @removeEntry="removeEntry"
       @updateEntry="updateEntry"/>
-    <v-row justify="center" class="mt-8" v-if="products.length > 1">
+    <v-row justify="center" class="mt-8" v-if="products.length > 0">
       <v-btn rounded outlined color="red" v-on:click="removeAllEntries">
          <v-icon medium>delete</v-icon> Delete All
       </v-btn>

@@ -1,6 +1,6 @@
 <template>
     <v-container v-if="favourites.length > 0">
-        <MealList @addProduct="addProduct" @removeFavourite="removeFavourite" :meals="favourites" :favourites="favourites"/>
+      <MealList @addIngredient="addIngredient" @removeFavourite="removeFavourite" :meals="favourites" :favourites="favourites"/>
     </v-container>
     <div v-else>
         <v-card
@@ -24,15 +24,12 @@ export default {
   },
 
   data: () => ({
-    meals: [],
     favourites: []
   }),
 
   methods: {
-    addProduct: function (e) {
-      ProductService.addProduct(e, (data) => {
-        this.meals = data
-      })
+    addIngredient: function (e) {
+      ProductService.addProduct(e, (data) => {})
     },
     removeFavourite: function (e) {
       FavouriteService.removeFavourite(e, (data) => {

@@ -39,8 +39,7 @@
         :area="meal.strArea"/>
       <MealIngredients
         :ingredients="meal.ingredients"
-        @addIngredient="addIngredient"
-        @addIngredients="addIngredients"/>
+        @addIngredient="addIngredient"/>
     </v-card>
 </div>
 </template>
@@ -66,9 +65,6 @@ export default {
   }),
 
   methods: {
-    addIngredients: function (e) {
-      this.$emit('addIngredients', e)
-    },
     addIngredient: function (ingredient) {
       this.$emit('addIngredient', ingredient)
     },

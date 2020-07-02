@@ -10,7 +10,7 @@
           class="ml-2 text-h4 font-weight-regular"
           style="color: white;"
           >
-          Find your meal
+          Add your products
         </v-card-title>
         <v-row class="mt-6">
           <v-spacer></v-spacer>

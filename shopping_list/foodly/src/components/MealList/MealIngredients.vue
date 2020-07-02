@@ -9,44 +9,31 @@
         <div
           v-for="(ingredient, index) in ingredients "
           :key="index">
-          <v-row>
-            <v-col>
-              <v-text-field
-                readonly
-                solo
-                flat
-                v-model="ingredients[index].name"
-                />
-            </v-col>
-            <v-col
-              lg="3">
-              <v-text-field
-                    readonly
-                    solo
-                    flat
-                    v-model="ingredients[index].amount"
-                    />
-            </v-col>
-            <v-col
-              lg="1">
-              <v-btn
-                icon
-                centered
-                color="primary"
-                v-on:click="addIngredient($event, ingredient)">
-                    <v-icon medium>add</v-icon>
-                </v-btn>
-            </v-col>
-          </v-row>
+          <v-list-item>
+            <v-list-item-title class="font-weight-medium">
+              {{ingredients[index].name}}
+            </v-list-item-title>
+            <v-list-item-subtitle class="mr-5 text-right">
+              {{ingredients[index].amount}}
+            </v-list-item-subtitle>
+            <v-btn
+              icon
+              centered
+              color="primary"
+              v-on:click="addIngredient($event, ingredient)">
+                  <v-icon medium>add</v-icon>
+            </v-btn>
+          </v-list-item>
+          <v-divider></v-divider>
         </div>
         <v-row justify="center">
-        <v-btn
-          class="primary mt-6 mb-2"
-          @click="addIngredients"
-          solo
-          rounded
-          >Add All</v-btn>
-          </v-row>
+          <v-btn
+            class="primary mt-6 mb-2"
+            @click="addIngredients"
+            solo
+            rounded
+            >Add All</v-btn>
+        </v-row>
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>

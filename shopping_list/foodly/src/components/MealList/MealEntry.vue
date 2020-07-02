@@ -78,12 +78,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.v-expansion-panel-header{
-    font-size: 18px;
-}
-.v-text-area{
-  font-size: 20px;
-}
-</style>

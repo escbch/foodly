@@ -1,17 +1,26 @@
 <template>
-    <div>
-        <v-banner
-          id="input"
-          sticky
-          app>
-          <ProductAdd @addData="addData"/>
-        </v-banner>
-        <ProductList
-        @removeEntry="removeEntry"
-        @removeAllEntries="removeAllEntries"
-        @updateEntry="updateEntry"
-        :products="products"/>
-    </div>
+  <div>
+    <v-banner
+      id="input"
+      sticky
+      app>
+      <ProductAdd
+        @addProduct="addProduct"
+        />
+    </v-banner>
+    <ProductList
+      v-if="products.length > 0"
+      @removeProduct="removeProduct"
+      @removeProducts="removeProducts"
+      @updateProduct="updateProduct"
+      :products="products"/>
+    <v-card
+      v-else
+      class="ma-15">
+        <v-img height="500" src="https://cdn.pixabay.com/photo/2016/07/31/11/52/table-1558811_960_720.jpg"/>
+        <v-card-title>Oops, there are no products so far</v-card-title>
+    </v-card>
+  </div>
 </template>
 
 <script>
@@ -31,22 +40,22 @@ export default {
   }),
 
   methods: {
-    removeEntry: function (e) {
+    removeProduct: function (e) {
       ProductService.removeProduct(e, (data) => {
         this.products = data
       })
     },
-    removeAllEntries: function () {
-      ProductService.removeAllProducts((data) => {
+    removeProducts: function () {
+      ProductService.removeProducts((data) => {
         this.products = data
       })
     },
-    updateEntry: function (e) {
+    updateProduct: function (e) {
       ProductService.updateProduct(e, (data) => {
         this.products = data
       })
     },
-    addData: function (e) {
+    addProduct: function (e) {
       ProductService.addProduct(e, (data) => {
         this.products = data
       })

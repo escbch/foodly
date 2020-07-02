@@ -5,7 +5,7 @@
     <v-checkbox
     class="ml-2 mr-5"
       v-model="product.checked"
-      @change="update"
+      @change="updateProduct"
       />
     <v-list-item-title class="font-weight-medium ">
       {{ product.name }}
@@ -13,7 +13,7 @@
     <v-list-item-subtitle class="text-right">
       {{ product.amount }}
     </v-list-item-subtitle>
-    <v-btn class="ml-6 mr-2" icon centered color="red" v-on:click="remove">
+    <v-btn class="ml-6 mr-2" icon centered color="red" v-on:click="removeProduct">
       <v-icon medium>highlight_off</v-icon>
     </v-btn>
   </v-list-item>
@@ -27,11 +27,11 @@ export default {
   props: ['product', 'index'],
 
   methods: {
-    remove () {
-      this.$emit('removeEntry', this.product)
+    removeProduct () {
+      this.$emit('removeProduct', this.product)
     },
-    update () {
-      this.$emit('updateEntry', this.product)
+    updateProduct () {
+      this.$emit('updateProduct', this.product)
     }
   }
 }

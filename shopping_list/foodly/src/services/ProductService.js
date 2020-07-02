@@ -23,7 +23,7 @@ export default {
       success(response.data)
     })
   },
-  removeAllProducts (success) {
+  removeProducts (success) {
     axios.delete(path + '/').then(response => {
       success(response.data)
     })

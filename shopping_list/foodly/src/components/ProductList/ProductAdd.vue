@@ -1,27 +1,28 @@
 <template>
   <v-container>
-    <v-row class="mr-10 ml-10">
-        <v-text-field
-          class="ml-5"
-          v-model="product"
-          :placeholder='"Enter your product here"'
-          rounded
-          clearable
-          solo
-          />
-        <v-text-field
-          v-model="amount"
-          :placeholder='"Amount"'
-          class="ml-3"
-          rounded
-          clearable
-          solo
-          />
-        <v-btn
-          color="primary"
-          class="mt-2 ml-2"
-          v-on:click="emitData">Add</v-btn>
-    </v-row>
+    <v-container>
+      <v-row no-gutters>
+        <v-col class="mr-16">
+          <v-text-field
+            v-model="product"
+            :placeholder='"Enter your product here"'/>
+        </v-col>
+        <v-col lg="2" class="mr-6">
+          <v-text-field
+            v-model="amount"
+            :placeholder='"Amount"'/>
+        </v-col>
+        <v-col lg="1">
+          <v-btn
+            rounded
+            color="primary"
+            class="mt-2 ml-2"
+            v-on:click="addProduct">
+            <v-icon small class="mr-2">add_shopping_cart</v-icon>
+            Add</v-btn>
+        </v-col>
+      </v-row>
+    </v-container>
     <v-snackbar
         bottom
         v-model="snackbar"
@@ -44,14 +45,14 @@ export default {
     snackbar: false
   }),
   methods: {
-    emitData: function () {
-      if (this.product === '' || this.amount.isNaN || this.amount <= 0) {
+    addProduct: function () {
+      if (this.product === '' || this.amount <= 0) {
         this.snackbar = true
         return
       }
-      this.$emit('addData', { name: this.product, amount: this.amount })
+      this.$emit('addProduct', { name: this.product, amount: this.amount })
       this.product = ''
-      this.amount = 1
+      this.amount = ''
     }
   }
 }

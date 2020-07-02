@@ -5,10 +5,10 @@
       :key="index"
       :product="entry"
       :index="index"
-      @removeEntry="removeEntry"
-      @updateEntry="updateEntry"/>
+      @removeProduct="removeProduct"
+      @updateProduct="updateProduct"/>
     <v-row justify="center" class="mt-8" v-if="products.length > 0">
-      <v-btn rounded outlined color="red" v-on:click="removeAllEntries">
+      <v-btn rounded outlined color="red" v-on:click="removeProducts">
          <v-icon medium>delete</v-icon> Delete All
       </v-btn>
     </v-row>
@@ -28,14 +28,14 @@ export default {
   props: ['products'],
 
   methods: {
-    removeEntry: function (product) {
-      this.$emit('removeEntry', product)
+    removeProduct: function (product) {
+      this.$emit('removeProduct', product)
     },
-    updateEntry: function (product) {
+    updateProduct: function (product) {
       this.$emit('updateEntry', product)
     },
-    removeAllEntries: function () {
-      this.$emit('removeAllEntries')
+    removeProducts: function () {
+      this.$emit('removeProducts')
     }
   }
 }

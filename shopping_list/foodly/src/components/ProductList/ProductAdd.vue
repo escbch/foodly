@@ -1,5 +1,53 @@
 <template>
   <v-container>
+    <v-card
+      class="grey lighten-2">
+      <v-img
+        src="https://cdn.pixabay.com/photo/2018/04/14/23/20/triangles-3320452_960_720.png"
+        height="200"
+        >
+        <v-card-title
+          class="ml-2 text-h4 font-weight-regular"
+          style="color: white;"
+          >
+          Find your meal
+        </v-card-title>
+        <v-row class="mt-6">
+          <v-spacer></v-spacer>
+          <v-col lg="6">
+            <v-text-field
+              v-model="product"
+              rounded
+              solo
+              :placeholder='"Enter your product here"'
+              clearable
+              />
+          </v-col>
+          <v-col lg="2">
+            <v-text-field
+              v-model="amount"
+              rounded
+              solo
+              :placeholder='"Amount"'
+              clearable
+              />
+          </v-col>
+          <v-col lg="auto">
+            <v-btn
+            class="mt-1"
+            v-on:click="addProduct"
+            color="primary"
+            rounded
+            >
+            <v-icon small class="mr-2">add_shopping_cart</v-icon>
+            Add
+            </v-btn>
+          </v-col>
+          <v-spacer></v-spacer>
+        </v-row>
+      </v-img>
+    </v-card>
+    <!--
     <v-container>
       <v-row no-gutters>
         <v-col class="mr-16">
@@ -22,7 +70,7 @@
             Add</v-btn>
         </v-col>
       </v-row>
-    </v-container>
+    </v-container>-->
     <v-snackbar
         bottom
         v-model="snackbar"

@@ -4,7 +4,8 @@
     </v-container>
     <div v-else>
         <v-card
-          class="ma-15">
+          style="margin-left: 15%; margin-right: 15%; margin-top: 20px;"
+          >
             <v-img height="500" src="https://cdn.pixabay.com/photo/2016/07/31/11/52/table-1558811_960_720.jpg"/>
             <v-card-title>Oops, there are no favourites so far</v-card-title>
         </v-card>

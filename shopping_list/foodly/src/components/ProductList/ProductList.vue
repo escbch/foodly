@@ -8,7 +8,7 @@
       @removeProduct="removeProduct"
       @updateProduct="updateProduct"/>
     <v-row justify="center" class="mt-8" v-if="products.length > 0">
-      <v-btn rounded outlined color="red" v-on:click="removeProducts">
+      <v-btn class="mb-5" rounded outlined color="red" v-on:click="removeProducts">
          <v-icon medium>delete</v-icon> Delete All
       </v-btn>
     </v-row>

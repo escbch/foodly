@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const fs = require("fs");
 const cors = require("cors");
-const port = 8080;
+const port = process.env.PORT || 5000;
 const productsFilename = __dirname + "/products.json";
 const favouritesFilename = __dirname + "/favourites.json";
 

@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import ProductAdd from '@/components/ProductList/ProductAdd.vue'
-import ProductList from '@/components/ProductList/ProductList.vue'
+import ProductAdd from '../components/ProductList/ProductAdd'
+import ProductList from '../components/ProductList/ProductList'
 import ProductService from '../services/ProductService.js'
 
 export default {

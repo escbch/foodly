@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import ProductEntry from '@/components/ProductList/ProductEntry.vue'
+import ProductEntry from './ProductEntry'
 
 export default {
   name: 'ProductList',

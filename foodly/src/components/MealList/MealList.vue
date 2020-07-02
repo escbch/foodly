@@ -45,7 +45,7 @@
 
 <script>
 
-import MealEntry from '@/components/MealList/MealEntry.vue'
+import MealEntry from './MealEntry'
 
 export default {
   name: 'MealList',

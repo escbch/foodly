@@ -47,30 +47,6 @@
         </v-row>
       </v-img>
     </v-card>
-    <!--
-    <v-container>
-      <v-row no-gutters>
-        <v-col class="mr-16">
-          <v-text-field
-            v-model="product"
-            :placeholder='"Enter your product here"'/>
-        </v-col>
-        <v-col lg="2" class="mr-6">
-          <v-text-field
-            v-model="amount"
-            :placeholder='"Amount"'/>
-        </v-col>
-        <v-col lg="1">
-          <v-btn
-            rounded
-            color="primary"
-            class="mt-2 ml-2"
-            v-on:click="addProduct">
-            <v-icon small class="mr-2">add_shopping_cart</v-icon>
-            Add</v-btn>
-        </v-col>
-      </v-row>
-    </v-container>-->
     <v-snackbar
         bottom
         v-model="snackbar"

@@ -13,9 +13,9 @@
 </template>
 
 <script>
-import FavouriteService from '../services/FavouriteService.js'
-import ProductService from '../services/ProductService.js'
-import MealList from '@/components/MealList/MealList.vue'
+import FavouriteService from '../services/FavouriteService'
+import ProductService from '../services/ProductService'
+import MealList from '../components/MealList/MealList'
 
 export default {
   name: 'FavouriteView',

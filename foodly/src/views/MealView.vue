@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import MealSearch from '@/components/MealList/MealSearch.vue'
-import MealList from '@/components/MealList/MealList.vue'
+import MealSearch from '../components/MealList/MealSearch'
+import MealList from '../components/MealList/MealList'
 import MealService from '../services/MealService'
-import ProductService from '@/services/ProductService.js'
-import FavouriteService from '@/services/FavouriteService.js'
+import ProductService from '../services/ProductService'
+import FavouriteService from '../services/FavouriteService'
 
 export default {
   name: 'MealView',

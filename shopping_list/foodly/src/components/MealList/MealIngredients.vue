@@ -2,7 +2,7 @@
   <v-expansion-panels>
     <v-expansion-panel>
       <v-expansion-panel-header
-        class="text-h6 font-weight-regular"
+        class="text-h6 font-weight-medium"
         >Ingredients
       </v-expansion-panel-header>
       <v-expansion-panel-content>
@@ -10,7 +10,7 @@
           v-for="(ingredient, index) in ingredients "
           :key="index">
           <v-list-item>
-            <v-list-item-title class="font-weight-medium">
+            <v-list-item-title>
               {{ingredients[index].name}}
             </v-list-item-title>
             <v-list-item-subtitle class="mr-5 text-right">

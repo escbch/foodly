@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const path = 'http://localhost:8080/favourites'
+const path = 'https://foodlywgt.herokuapp.com/favourites'
 
 export default {
   addFavourite (favourite, success) {
